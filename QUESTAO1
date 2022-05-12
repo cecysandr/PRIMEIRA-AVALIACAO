@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+int main(){
+
+    struct matriz_3D {
+        float*** matriz;
+        float x,y,z;
+        double posicao;
+        double xc,yc,zc,r;
+    };
+
+    struct matriz_3D q;
+
+    int i,j,k,z_verif;
+    printf("Qual é a dimensão?"); // assumindo que é um cubo, ou seja, mesmas dimensões
+    scanf("%f",&q.x);
+    
+    
+    
+    
+    q.y = q.x;
+    q.z = q.x; //dimensões da matriz
+
+    q.matriz = malloc (sizeof (int) * q.x);
+    
+    for(i=0;i<q.x;i++){
+      q.matriz[i] = malloc (sizeof (int) * q.y); 
+      
+      }
+    
+    for(i=0;i<q.x;i++){
+        q.matriz[i] = malloc (sizeof (int) * q.y); 
+        for(j=0;j<=q.y;j++){
+        q.matriz[i][j] = malloc (sizeof (int) * q.z); 
+          
+        }
+        
+    }
+    q.xc = q.x/2.0;
+    q.yc = q.y/2.0;
+    q.zc = q.z/2.0;
+    q.r=q.xc;
+   for(i=0;i<q.x;i++){
+       for(j=0;j<q.y;j++){
+           for(k=0;k<q.z;k++){
+   
+    //condição para o ponto pertencer à esfera de raio r sqrt(pow((q.x-q.xc),2)+pow((q.y-q.yc),2)) <= q.r
+    
+    double var = sqrt((pow((i+0.5-q.xc),2)+pow((j+0.5-q.yc),2)+pow((k+0.5-q.zc),2)));
+   
+   if(q.r>=var){
+        
+        q.matriz[i][j][k]=1;
+    }
+    else q.matriz[i][j][k]=0;
+   }
+       }
+   }
+   
+   for(i=0;i<q.x;i++){
+       for(j=0;j<q.y;j++){
+           for(k=0;k<q.z;k++){
+               printf(" %f ",q.matriz[i][j][k]);
+           }
+           printf("\n");
+       }
+       printf("\n\n\n");
+   }
+
+    free ( q.matriz );
+}
